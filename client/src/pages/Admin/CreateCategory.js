@@ -19,14 +19,13 @@ const CreateCategory = () => {
         name,
       });
       if (data?.success) {
-        toast.success(`${name} is created`);
+        toast.success(`${name} qo'shildi`);
         getAllCategory();
       } else {
         toast.error(data.message);
       }
     } catch (error) {
       console.log(error);
-      // toast.error("somthing went wrong in input form");
     }
   };
 
@@ -35,11 +34,12 @@ const CreateCategory = () => {
     try {
       const { data } = await axios.get("/api/v1/category/get-category");
       if (data?.success) {
+        console.log(data);
         setCategories(data?.category);
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something wwent wrong in getting catgeory");
+      toast.error("Turkum olishda nimadir xato ketdi");
     }
   };
 
@@ -56,7 +56,7 @@ const CreateCategory = () => {
         { name: updatedName }
       );
       if (data?.success) {
-        toast.success(`${updatedName} is updated`);
+        toast.success(`${updatedName} yangilandi`);
         setSelected(null);
         setUpdatedName("");
         setVisible(false);
@@ -75,25 +75,25 @@ const CreateCategory = () => {
         `/api/v1/category/delete-category/${pId}`
       );
       if (data.success) {
-        toast.success(`category is deleted`);
+        toast.success(`Kategoriya o'chiriladi`);
 
         getAllCategory();
       } else {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error("Somtihing went wrong");
+      toast.error("Nimadir noto'g'ri bajarildi");
     }
   };
   return (
-    <Layout title={"Dashboard - Create Category"}>
+    <Layout title={"Admin - Kategoriya qo'shish"}>
       <div className="container-fluid m-3 p-3 dashboard">
         <div className="row">
           <div className="col-md-3">
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <h1>Manage Category</h1>
+            <h1>Kategoriyani boshqarish</h1>
             <div className="p-3 w-50">
               <CategoryForm
                 handleSubmit={handleSubmit}
@@ -105,8 +105,8 @@ const CreateCategory = () => {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">Kategoriya nomi</th>
+                    <th scope="col">Harakatlar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -123,7 +123,7 @@ const CreateCategory = () => {
                               setSelected(c);
                             }}
                           >
-                            Edit
+                            Tahrirlash
                           </button>
                           <button
                             className="btn btn-danger ms-2"
@@ -131,7 +131,7 @@ const CreateCategory = () => {
                               handleDelete(c._id);
                             }}
                           >
-                            Delete
+                            O'chirish
                           </button>
                         </td>
                       </tr>

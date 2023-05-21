@@ -22,7 +22,7 @@ export const isAdmin = async (req, res, next) => {
     if (user.role !== 1) {
       return res.status(401).send({
         success: false,
-        message: "UnAuthorized Access",
+        message: "Ruxsatsiz kirish",
       });
     } else {
       next();
@@ -32,7 +32,7 @@ export const isAdmin = async (req, res, next) => {
     res.status(401).send({
       success: false,
       error,
-      message: "Error in admin middelware",
+      message: "Administrator o'rta dasturida xato",
     });
   }
 };

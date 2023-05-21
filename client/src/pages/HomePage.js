@@ -6,7 +6,7 @@ import { useCart } from "../context/cart";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
-import { AiOutlineReload } from "react-icons/ai";
+import { AiOutlineReload, AiOutlineHeart } from "react-icons/ai";
 import { MdArrowForwardIos } from "react-icons/md";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
@@ -52,7 +52,7 @@ const HomePage = () => {
     }
   };
 
-  //getTOtal COunt
+  //getTotal count
   const getTotal = async () => {
     try {
       const { data } = await axios.get("/api/v1/product/product-count");
@@ -110,11 +110,11 @@ const HomePage = () => {
     }
   };
   return (
-    <Layout title={"All Products - Best offers "}>
+    <Layout title={"Bosh Sahifa"}>
       {/* banner image */}
         <div className="banner">
           <div className="banner-img">
-          <Splide  aria-label="My Favorite Images" options={ {
+    <Splide  aria-label="My Favorite Images" options={ {
             rewind: true,
             type: 'loop',
             autoplay: 'play',
@@ -146,47 +146,15 @@ const HomePage = () => {
    </Splide>
           </div>
         </div>
-      {/* banner image */}
-      <div className="container-fluid row mt-3 home-page">
-        <div className="col-md-3 filters">
-          <h4 className="text-center">Saralash Kataloglar orqali</h4>
-          <div className="row">
-            {categories?.map((c) => (
-              <div className="col-6">
-                <Checkbox
-                key={c._id}
-                onChange={(e) => handleFilter(e.target.checked, c._id)}
-              >
-                {c.name}
-              </Checkbox>
-              </div>
-            ))}
-          </div>
-          {/* price filter */}
-          <h4 className="text-center mt-4">Saralash narx bo'yicha</h4>
-          <div className="d-flex flex-column">
-            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-              {Prices?.map((p) => (
-                <div key={p._id}>
-                  <Radio value={p.array}>{p.name}</Radio>
-                </div>
-              ))}
-            </Radio.Group>
-          </div>
-          <div className="d-flex flex-column">
-            <button
-              className="reset"
-              onClick={() => window.location.reload()}
-            >
-              Tozalash
-            </button>
-          </div>
-        </div>
-        <div className="col-md-9 ">
+      <div className="container row mt-3 home-page">
           <div className="title">Mahsulotlar <MdArrowForwardIos/></div>
-          <div className="d-flex flex-wrap">
-            {products?.map((p) => (
-              <div className="card m-2"key={p._id}>
+          <div className="row">
+          {products?.map((p) => (
+              <div className="col-20"key={p._id}>
+                <div className="card">
+                  <span className="like">
+                    <AiOutlineHeart/>
+                  </span>
                 <img onClick={() => navigate(`/product/${p.slug}`)} 
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
@@ -194,16 +162,16 @@ const HomePage = () => {
                 />
                 <div className="card-body">
                   <div onClick={() => navigate(`/product/${p.slug}`)}  className="card-name-price">
-                    <h5 onClick={() => navigate(`/product/${p.slug}`)}  className="card-title">{p.name}</h5>
-                    <h5 onClick={() => navigate(`/product/${p.slug}`)}  className="card-title card-price">
-                      {p.price.toLocaleString("en-US", {
+                    <h5 onClick={() => navigate(`/product/${p.slug}`)}  className="card-title">{p.name.substring(0, 28)}</h5>
+                  </div>
+                  <h5 onClick={() => navigate(`/product/${p.slug}`)}  className="card-title card-price">
+                    <span>Narxi: </span>  {p.price.toLocaleString("en-US", {
                         style: "currency",
                         currency: "USD",
                       })}
                     </h5>
-                  </div>
                   <p onClick={() => navigate(`/product/${p.slug}`)}  className="card-text">
-                    {p.description.substring(0, 60)}...
+                    {p.description.substring(0, 30)}...
                   </p>
                   <div className="card-name-price">
                    <button
@@ -214,15 +182,16 @@ const HomePage = () => {
                           "cart",
                           JSON.stringify([...cart, p])
                         );
-                        toast.success("Item Added to cart");
+                        toast.success("Mahsulot karzinkaga qo'shildi");
                       }}
                     >
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-bag-plus" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"/>
   <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
-</svg>
+                        </svg>
                     </button>
                   </div>
+                </div>
                 </div>
               </div>
             ))}
@@ -237,17 +206,17 @@ const HomePage = () => {
                 }}
               >
                 {loading ? (
-                  "Loading ..."
+                  "Yuklash ..."
                 ) : (
                   <>
                     {" "}
-                    Loadmore <AiOutlineReload />
+                    Barchasi  <AiOutlineReload />
                   </>
                 )}
               </button>
             )}
           </div>
-        </div>
+       
       </div>
     </Layout>
   );

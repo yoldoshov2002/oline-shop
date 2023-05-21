@@ -21,19 +21,18 @@ const CategoryProduct = () => {
       setCategory(data?.category);
     } catch (error) {
       console.log(error);
+      
     }
   };
 
   return (
-    <Layout title={'Katalog mahsulot | Grocc'}>
+    <Layout title={'Katalog mahsulot'}>
       <div className="container mt-3 category">
         <h4 className="text-center">Katalog - {category?.name}</h4>
         <h6 className="text-center">{products?.length} ta natija topildi...</h6>
         <div className="row">
-          {/* <div className="col-md-9 offset-1"> */}
-            {/* <div className="d-flex flex-wrap"> */}
               {products?.map((p) => (
-                <div className="col-3 " key={p._id}>
+                <div className="col-20 " key={p._id}>
                   <div className="card">
                   <img
                     src={`/api/v1/product/product-photo/${p._id}`}
@@ -55,7 +54,7 @@ const CategoryProduct = () => {
                     </p>
                     <div className="card-name-price">
                       <button
-                        className="btn btn-info ms-1"
+                        className="btn btn-info ms-1 card-btn"
                         onClick={() => navigate(`/product/${p.slug}`)}
                       >
                         Batafsil
@@ -65,21 +64,6 @@ const CategoryProduct = () => {
                   </div>
                 </div>
               ))}
-            {/* </div> */}
-            {/* <div className="m-2 p-3">
-            {products && products.length < total && (
-              <button
-                className="btn btn-warning"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPage(page + 1);
-                }}
-              >
-                {loading ? "Loading ..." : "Loadmore"}
-              </button>
-            )}
-          </div> */}
-          {/* </div> */}
         </div>
       </div>
     </Layout>

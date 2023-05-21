@@ -4,13 +4,13 @@ export const createCategoryController = async (req, res) => {
   try {
     const { name } = req.body;
     if (!name) {
-      return res.status(401).send({ message: "Name is required" });
+      return res.status(401).send({ message: "Maydoni to'ldirish majburiy" });
     }
     const existingCategory = await categoryModel.findOne({ name });
     if (existingCategory) {
       return res.status(200).send({
         success: false,
-        message: "Category Already Exisits",
+        message: "Turkum allaqachon mavjud",
       });
     }
     const category = await new categoryModel({
@@ -19,15 +19,15 @@ export const createCategoryController = async (req, res) => {
     }).save();
     res.status(201).send({
       success: true,
-      message: "new category created",
+      message: "yangi kategoriya yaratildi",
       category,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      errro,
-      message: "Errro in Category",
+      error,
+      message: "Turkumdagi xato",
     });
   }
 };
@@ -44,7 +44,7 @@ export const updateCategoryController = async (req, res) => {
     );
     res.status(200).send({
       success: true,
-      messsage: "Category Updated Successfully",
+      messsage: "Turkum muvaffaqiyatli yangilandi",
       category,
     });
   } catch (error) {
@@ -52,7 +52,7 @@ export const updateCategoryController = async (req, res) => {
     res.status(500).send({
       success: false,
       error,
-      message: "Error while updating category",
+      message: "Kategoriyani yangilashda xatolik yuz berdi",
     });
   }
 };
@@ -63,7 +63,7 @@ export const categoryControlller = async (req, res) => {
     const category = await categoryModel.find({});
     res.status(200).send({
       success: true,
-      message: "All Categories List",
+      message: "Barcha toifalar ro'yxati",
       category,
     });
   } catch (error) {
@@ -71,7 +71,7 @@ export const categoryControlller = async (req, res) => {
     res.status(500).send({
       success: false,
       error,
-      message: "Error while getting all categories",
+      message: "Barcha toifalarni olishda xatolik yuz berdi",
     });
   }
 };
@@ -82,7 +82,7 @@ export const singleCategoryController = async (req, res) => {
     const category = await categoryModel.findOne({ slug: req.params.slug });
     res.status(200).send({
       success: true,
-      message: "Get SIngle Category SUccessfully",
+      message: "Yagona toifani muvaffaqiyatli oling",
       category,
     });
   } catch (error) {
@@ -90,7 +90,7 @@ export const singleCategoryController = async (req, res) => {
     res.status(500).send({
       success: false,
       error,
-      message: "Error While getting Single Category",
+      message: "Yagona toifani olishda xato",
     });
   }
 };
@@ -102,13 +102,13 @@ export const deleteCategoryCOntroller = async (req, res) => {
     await categoryModel.findByIdAndDelete(id);
     res.status(200).send({
       success: true,
-      message: "Categry Deleted Successfully",
+      message: "Turkum muvaffaqiyatli oʻchirildi",
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "error while deleting category",
+      message: "Kategoriyani o'chirishda xatolik yuz berdi",
       error,
     });
   }

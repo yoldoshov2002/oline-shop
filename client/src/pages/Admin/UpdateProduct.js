@@ -51,7 +51,7 @@ const UpdateProduct = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something wwent wrong in getting catgeory");
+      toast.error("Turkum olishda nimadir xato ketdi");
     }
   };
 
@@ -77,43 +77,43 @@ const UpdateProduct = () => {
       if (data?.success) {
         toast.error(data?.message);
       } else {
-        toast.success("Product Updated Successfully");
+        toast.success("Mahsulot muvaffaqiyatli yangilandi");
         navigate("/dashboard/admin/products");
       }
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong");
+      toast.error("Nimadir xato ketdi");
     }
   };
 
   //delete a product
   const handleDelete = async () => {
     try {
-      let answer = window.prompt("Are You Sure want to delete this product ? ");
+      let answer = window.prompt("Haqiqatan ham ushbu mahsulotni o'chirib tashlamoqchimisiz? ");
       if (!answer) return;
       const { data } = await axios.delete(
         `/api/v1/product/delete-product/${id}`
       );
-      toast.success("Product DEleted Succfully");
+      toast.success("Mahsulot o'chirildi");
       navigate("/dashboard/admin/products");
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error("Xatolik yuz berdi");
     }
   };
   return (
-    <Layout title={"Mahsulot qo'shish | Grocc"}>
+    <Layout title={"Mahsulot qo'shish"}>
       <div className="container-fluid m-3 p-3">
         <div className="row">
           <div className="col-md-3">
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <h1>Update Product</h1>
+            <h1>Mahsulotni yangilash</h1>
             <div className="m-1 w-75">
               <Select
                 bordered={false}
-                placeholder="Select a category"
+                placeholder="Kategoriyadan tanlang"
                 size="large"
                 showSearch
                 className="form-select mb-3"
@@ -130,7 +130,7 @@ const UpdateProduct = () => {
               </Select>
               <div className="mb-3">
                 <label className="btn btn-outline-secondary col-md-12">
-                  {photo ? photo.name : "Upload Photo"}
+                  {photo ? photo.name : "Rasm yuklash"}
                   <input
                     type="file"
                     name="photo"
@@ -165,7 +165,7 @@ const UpdateProduct = () => {
                 <input
                   type="text"
                   value={name}
-                  placeholder="write a name"
+                  placeholder="Mahsulotni nomini kiriting"
                   className="form-control"
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -174,7 +174,7 @@ const UpdateProduct = () => {
                 <textarea
                   type="text"
                   value={description}
-                  placeholder="write a description"
+                  placeholder="Mahsulot haqida yozing"
                   className="form-control"
                   onChange={(e) => setDescription(e.target.value)}
                 />
@@ -184,7 +184,7 @@ const UpdateProduct = () => {
                 <input
                   type="number"
                   value={price}
-                  placeholder="write a Price"
+                  placeholder="Mahsulot narxini kiriting"
                   className="form-control"
                   onChange={(e) => setPrice(e.target.value)}
                 />
@@ -193,7 +193,7 @@ const UpdateProduct = () => {
                 <input
                   type="number"
                   value={quantity}
-                  placeholder="write a quantity"
+                  placeholder="Mahsulotni ombordagi soni"
                   className="form-control"
                   onChange={(e) => setQuantity(e.target.value)}
                 />
@@ -201,7 +201,7 @@ const UpdateProduct = () => {
               <div className="mb-3">
                 <Select
                   bordered={false}
-                  placeholder="Select Shipping "
+                  placeholder="Yetkazib berish xizmati"
                   size="large"
                   showSearch
                   className="form-select mb-3"
@@ -210,18 +210,18 @@ const UpdateProduct = () => {
                   }}
                   value={shipping ? "yes" : "No"}
                 >
-                  <Option value="0">No</Option>
-                  <Option value="1">Yes</Option>
+                  <Option value="0">Yo'q</Option>
+                  <Option value="1">Ha</Option>
                 </Select>
               </div>
               <div className="mb-3">
                 <button className="btn btn-primary" onClick={handleUpdate}>
-                  UPDATE PRODUCT
+                  Mahsulotni yangilash
                 </button>
               </div>
               <div className="mb-3">
                 <button className="btn btn-danger" onClick={handleDelete}>
-                  DELETE PRODUCT
+                  Mahsulotni o'chirish
                 </button>
               </div>
             </div>

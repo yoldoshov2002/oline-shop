@@ -28,13 +28,13 @@ const SearchInput = () => {
         <input
           className="form-control me-2"
           type="search"
-          placeholder="Искать товары и категории"
+          placeholder="Mahsulotlar va toifalarni qidiring"
           aria-label="Search"
           value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         />
         <button className="bnt btn-search" type="submit">
-          Search
+          Qidirish
         </button>
       </form>
     </div>

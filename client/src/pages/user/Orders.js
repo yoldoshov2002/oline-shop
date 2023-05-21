@@ -28,7 +28,7 @@ const Orders = () => {
             <UserMenu />
           </div>
           <div className="col-md-9">
-            <h1 className="text-center">Sizning buyurmangiz...</h1>
+            <h1 className="text-center">Sizning buyrutmangiz...</h1>
             {orders?.map((o, i) => {
               return (
                 <div className="border shadow">
@@ -37,10 +37,10 @@ const Orders = () => {
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Buyer</th>
+                        <th scope="col">Xaridor</th>
                         <th scope="col"> date</th>
-                        <th scope="col">Payment</th>
-                        <th scope="col">Quantity</th>
+                        <th scope="col">To'lov</th>
+                        <th scope="col">Soni</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -49,7 +49,7 @@ const Orders = () => {
                         <td>{o?.status}</td>
                         <td>{o?.buyer?.name}</td>
                         <td>{moment(o?.createAt).fromNow()}</td>
-                        <td>{o?.payment.success ? "Success" : "Failed"}</td>
+                        <td>{o?.payment.success ? "Muvaffaqiyat" : "Muvaffaqiyatsiz"}</td>
                         <td>{o?.products?.length}</td>
                       </tr>
                     </tbody>
@@ -69,7 +69,7 @@ const Orders = () => {
                         <div className="col-md-8">
                           <p>{p.name}</p>
                           <p>{p.description.substring(0, 30)}</p>
-                          <p>Price : {p.price}</p>
+                          <p>Narxi : {p.price}</p>
                         </div>
                       </div>
                     ))}

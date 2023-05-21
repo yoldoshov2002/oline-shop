@@ -26,7 +26,7 @@ import CartPage from "./pages/CartPage";
 import AdminOrders from "./pages/Admin/AdminOrders";
 function App() {
   return (
-    <>
+    <div className="max-container">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/product/:slug" element={<ProductDetails />} />
@@ -56,7 +56,7 @@ function App() {
         <Route path="/policy" element={<Policy />} />
         <Route path="*" element={<Pagenotfound />} />
       </Routes>
-    </>
+    </div>
   );
 }
 

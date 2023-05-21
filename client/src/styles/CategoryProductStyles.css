@@ -5,7 +5,16 @@
 .category .card {
   background-color: rgba(128, 128, 128, 0.097);
   margin: 15px;
+  min-height: 420px;
+  max-height: 420px;
+  position: relative;
   
+}
+.category .card-btn{
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  width: 150px;
 }
 
 .category .card-name-price {
@@ -36,5 +45,5 @@
 }
 
 .category .card-img-top {
-  height: 300px !important;
+  height: 200px !important;
 }

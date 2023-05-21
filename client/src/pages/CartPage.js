@@ -90,7 +90,7 @@ const CartPage = () => {
                   ? `Sizning savatingizda ${cart.length} ta mahsulot bor! ${
                       auth?.token ? "" : "Iltimos, hisob-kitob qilish uchun tizimga kiring !"
                     }`
-                  : " Savatingiz boʻsh..."}
+                  : " Savatingiz bo'sh..."}
               </p>
             </h1>
           </div>
@@ -141,6 +141,12 @@ const CartPage = () => {
                     >
                       Manzilni yangilash
                     </button>
+                    <button
+                      className="btn btn-outline-warning ms-3"
+                      onClick={() => navigate("/")}
+                    >
+                      Buyurtma berish
+                    </button>
                   </div>
                 </>
               ) : (
@@ -150,7 +156,7 @@ const CartPage = () => {
                       className="btn btn-outline-warning"
                       onClick={() => navigate("/dashboard/user/profile")}
                     >
-                      Update Address
+                      Manzilni yangilash
                     </button>
                   ) : (
                     <button
@@ -161,7 +167,7 @@ const CartPage = () => {
                         })
                       }
                     >
-                      Plase Login to checkout
+                      Iltimos, hisob-kitob qilish uchun tizimga kiring
                     </button>
                   )}
                 </div>
@@ -186,7 +192,7 @@ const CartPage = () => {
                       onClick={handlePayment}
                       disabled={loading || !instance || !auth?.user?.address}
                     >
-                      {loading ? "Processing ...." : "Make Payment"}
+                      {loading ? "Qayta ishlanmoqda..." : "To'lovni amalga oshirish"}
                     </button>
                   </>
                 )}

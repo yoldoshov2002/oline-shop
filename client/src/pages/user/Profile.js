@@ -42,15 +42,15 @@ const Profile = () => {
         ls = JSON.parse(ls);
         ls.user = data.updatedUser;
         localStorage.setItem("auth", JSON.stringify(ls));
-        toast.success("Profile Updated Successfully");
+        toast.success("Profile yangilandi");
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error("Nimadir xato ketdi");
     }
   };
   return (
-    <Layout title={"Profile | Grocc"}>
+    <Layout title={"Shaxsiy Profile"}>
       <div className="container-fluid m-3 p-3 dashboard">
         <div className="row">
           <div className="col-md-3">
@@ -66,7 +66,7 @@ const Profile = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     id="exampleInputEmail1"
-                    placeholder="Enter Your Name"
+                    placeholder="Ismingizni kiriting"
                     autoFocus
                   />
                 </div>
@@ -76,7 +76,7 @@ const Profile = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     id="exampleInputEmail1"
-                    placeholder="Enter Your Email "
+                    placeholder="Email manzilingizni kiriting"
                     disabled
                   />
                 </div>
@@ -86,7 +86,7 @@ const Profile = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     id="exampleInputPassword1"
-                    placeholder="Enter Your Password"
+                    placeholder="Parol kiriting"
                   />
                 </div>
                 <div className="mb-3">
@@ -95,7 +95,7 @@ const Profile = () => {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     id="exampleInputEmail1"
-                    placeholder="Enter Your Phone"
+                    placeholder="Telefon raqamingizni kiriting"
                   />
                 </div>
                 <div className="mb-3">
@@ -104,7 +104,7 @@ const Profile = () => {
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     id="exampleInputEmail1"
-                    placeholder="Enter Your Address"
+                    placeholder="Manzilingizni kiriting"
                   />
                 </div>
 

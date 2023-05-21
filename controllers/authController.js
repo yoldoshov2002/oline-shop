@@ -9,22 +9,22 @@ export const registerController = async (req, res) => {
     const { name, email, password, phone, address, answer } = req.body;
     //validations
     if (!name) {
-      return res.send({ error: "Name is Required" });
+      return res.send({ error: "Ism maydoni to'ldirilmagan." });
     }
     if (!email) {
-      return res.send({ message: "Email is Required" });
+      return res.send({ message: "Email maydoni to'ldirilmagan." });
     }
     if (!password) {
-      return res.send({ message: "Password is Required" });
+      return res.send({ message: "Parolingizni kiriting." });
     }
     if (!phone) {
-      return res.send({ message: "Phone no is Required" });
+      return res.send({ message: "Telefon raqam kiriting" });
     }
     if (!address) {
-      return res.send({ message: "Address is Required" });
+      return res.send({ message: "Yashash manzilingizni kititing" });
     }
     if (!answer) {
-      return res.send({ message: "Answer is Required" });
+      return res.send({ message: "Javobingizni kiriting" });
     }
     //check user
     const exisitingUser = await userModel.findOne({ email });
@@ -32,7 +32,7 @@ export const registerController = async (req, res) => {
     if (exisitingUser) {
       return res.status(200).send({
         success: false,
-        message: "Already Register please login",
+        message: "Alaqachon ro'yhatdan o'tilgan",
       });
     }
     //register user
@@ -49,14 +49,14 @@ export const registerController = async (req, res) => {
 
     res.status(201).send({
       success: true,
-      message: "User Register Successfully",
+      message: "Moafaqiyatili ro'yhatdan o'tingiz",
       user,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Errro in Registeration",
+      message: "Xatolik yuz berdi",
       error,
     });
   }
@@ -70,7 +70,7 @@ export const loginController = async (req, res) => {
     if (!email || !password) {
       return res.status(404).send({
         success: false,
-        message: "Invalid email or password",
+        message: "Yaroqsiz email yok parol",
       });
     }
     //check user
@@ -78,14 +78,14 @@ export const loginController = async (req, res) => {
     if (!user) {
       return res.status(404).send({
         success: false,
-        message: "Email is not registerd",
+        message: "Email ro'yxatdan o'tmagan",
       });
     }
     const match = await comparePassword(password, user.password);
     if (!match) {
       return res.status(200).send({
         success: false,
-        message: "Invalid Password",
+        message: "Yaroqsiz parol",
       });
     }
     //token
@@ -94,7 +94,7 @@ export const loginController = async (req, res) => {
     });
     res.status(200).send({
       success: true,
-      message: "login successfully",
+      message: "Siz tizimga kirdingiz",
       user: {
         _id: user._id,
         name: user.name,
@@ -109,7 +109,7 @@ export const loginController = async (req, res) => {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Error in login",
+      message: "Kirishda xatolik",
       error,
     });
   }
@@ -121,13 +121,13 @@ export const forgotPasswordController = async (req, res) => {
   try {
     const { email, answer, newPassword } = req.body;
     if (!email) {
-      res.status(400).send({ message: "Emai is required" });
+      res.status(400).send({ message: "Emailni  kiriting" });
     }
     if (!answer) {
-      res.status(400).send({ message: "answer is required" });
+      res.status(400).send({ message: "Yoqtirgan sportingizni kiriting" });
     }
     if (!newPassword) {
-      res.status(400).send({ message: "New Password is required" });
+      res.status(400).send({ message: "Yangi parol kiriting" });
     }
     //check
     const user = await userModel.findOne({ email, answer });
@@ -135,20 +135,20 @@ export const forgotPasswordController = async (req, res) => {
     if (!user) {
       return res.status(404).send({
         success: false,
-        message: "Wrong Email Or Answer",
+        message: "Not'g'ri email yoki javob",
       });
     }
     const hashed = await hashPassword(newPassword);
     await userModel.findByIdAndUpdate(user._id, { password: hashed });
     res.status(200).send({
       success: true,
-      message: "Password Reset Successfully",
+      message: "Yangi parol o'rnatildi",
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Something went wrong",
+      message: "Nimadir noto'g'ri bajarildi",
       error,
     });
   }
@@ -171,7 +171,7 @@ export const updateProfileController = async (req, res) => {
     const user = await userModel.findById(req.user._id);
     //password
     if (password && password.length < 6) {
-      return res.json({ error: "Passsword is required and 6 character long" });
+      return res.json({ error: "Parol talab qilinadi va 6 ta belgidan iborat" });
     }
     const hashedPassword = password ? await hashPassword(password) : undefined;
     const updatedUser = await userModel.findByIdAndUpdate(
@@ -186,14 +186,14 @@ export const updateProfileController = async (req, res) => {
     );
     res.status(200).send({
       success: true,
-      message: "Profile Updated SUccessfully",
+      message: "Profil muvaffaqiyatli yangilandi",
       updatedUser,
     });
   } catch (error) {
     console.log(error);
     res.status(400).send({
       success: false,
-      message: "Error WHile Update profile",
+      message: "Profilni yangilashda xato",
       error,
     });
   }
@@ -211,7 +211,7 @@ export const getOrdersController = async (req, res) => {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Error WHile Geting Orders",
+      message: "Buyurtmalarni olishda xato",
       error,
     });
   }
@@ -229,7 +229,7 @@ export const getAllOrdersController = async (req, res) => {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Error WHile Geting Orders",
+      message: "Buyurtmalarni olishda xato",
       error,
     });
   }
@@ -250,7 +250,7 @@ export const orderStatusController = async (req, res) => {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Error While Updateing Order",
+      message: "Buyurtmalarni olishda xato",
       error,
     });
   }

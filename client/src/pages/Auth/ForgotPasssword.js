@@ -30,7 +30,7 @@ const ForgotPasssword = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error("Nimadir xato ketdi");
     }
   };
   return (
@@ -45,7 +45,7 @@ const ForgotPasssword = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               id="exampleInputEmail1"
-              placeholder="exaple@gmail.com... "
+              placeholder="example@gmail.com... "
               required
             />
           </div>

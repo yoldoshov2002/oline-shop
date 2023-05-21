@@ -33,7 +33,7 @@ const Register = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error("Nimadir xato ketdi");
     }
   };
 
@@ -61,7 +61,7 @@ const Register = () => {
               onChange={(e) => setEmail(e.target.value)}
               className="form-text"
               id="exampleInputEmail1"
-              placeholder="exaple@gmail.com..."
+              placeholder="example@gmail.com..."
               required
             />
           </div>

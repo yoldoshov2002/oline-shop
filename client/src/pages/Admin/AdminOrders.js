@@ -43,13 +43,14 @@ const AdminOrders = () => {
     }
   };
   return (
-    <Layout title={"Buyurmalar | Grocc"}>
-      <div className="row dashboard">
+    <Layout title={"Buyurtmalar"}>
+      <div className="container-fluid m-3 p-3 dashboard">
+      <div className="row">
         <div className="col-md-3">
           <AdminMenu />
         </div>
         <div className="col-md-9">
-          <h1 className="text-center">All Orders</h1>
+          <h1 className="text-center">Barcha Buyurmalar</h1>
           {orders?.map((o, i) => {
             return (
               <div className="border shadow">
@@ -58,10 +59,10 @@ const AdminOrders = () => {
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Status</th>
-                      <th scope="col">Buyer</th>
-                      <th scope="col"> date</th>
-                      <th scope="col">Payment</th>
-                      <th scope="col">Quantity</th>
+                      <th scope="col">Xaridor</th>
+                      <th scope="col">Sana</th>
+                      <th scope="col">To'lov</th>
+                      <th scope="col">Soni</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -102,7 +103,7 @@ const AdminOrders = () => {
                       <div className="col-md-8">
                         <p>{p.name}</p>
                         <p>{p.description.substring(0, 30)}</p>
-                        <p>Price : {p.price}</p>
+                        <p>Narxi : {p.price}</p>
                       </div>
                     </div>
                   ))}
@@ -111,6 +112,7 @@ const AdminOrders = () => {
             );
           })}
         </div>
+      </div>
       </div>
     </Layout>
   );

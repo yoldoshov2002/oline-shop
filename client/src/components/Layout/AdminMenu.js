@@ -3,39 +3,39 @@ import { NavLink } from "react-router-dom";
 const AdminMenu = () => {
   return (
     <>
-      <div className="text-center">
+      <div className="text-center admin-menu">
         <div className="list-group dashboard-menu">
-          <h4>Admin Panel</h4>
+          <h4>Admin Menu</h4>
           <NavLink
             to="/dashboard/admin/create-category"
             className="list-group-item list-group-item-action"
           >
-            Create Category
+            Katalog qo'shish
           </NavLink>
           <NavLink
             to="/dashboard/admin/create-product"
             className="list-group-item list-group-item-action"
           >
-            Create Product
+            Mahsulot qo'shish
           </NavLink>
           <NavLink
             to="/dashboard/admin/products"
             className="list-group-item list-group-item-action"
           >
-            Products
+            Mahsulotlar
           </NavLink>
           <NavLink
             to="/dashboard/admin/orders"
             className="list-group-item list-group-item-action"
           >
-            Orders
+            Buyurtmalar
           </NavLink>
-          {/* <NavLink
+          <NavLink
             to="/dashboard/admin/users"
             className="list-group-item list-group-item-action"
           >
-            Users
-          </NavLink> */}
+            Foydalanuvchilar
+          </NavLink>
         </div>
       </div>
     </>
